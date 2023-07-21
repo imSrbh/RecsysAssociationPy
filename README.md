@@ -51,6 +51,7 @@ The app provides the following endpoints:
 - `/item-recommendation`: Recommends similar items based on an input item ID.
 - `/user-recommendation`: Recommends items to one user based on the items purchased by another user.
 - `/apriori-recommendation`: Mines association rules using the Apriori algorithm and provides recommendations based on the rules.
+- `/fpgrowth-recommendation`: Mines association rules using the FPGrowth algorithm and provides recommendations based on the rules.
 
 ## Example Usage
 
@@ -66,10 +67,16 @@ curl http://localhost:5000/item-recommendation?item_id=23167
 curl http://localhost:5000/user-recommendation?user_idA=12583&user_idB=13047
 ```
 
-3. To mine association rules and get recommendations based on the rules:
+3. To mine association rules using apriori and get recommendations based on the rules:
 
 ```bash
 curl http://localhost:5000/apriori-recommendation?min_support=0.01&min_threshold=0.5
+```
+
+4. To mine association rules using fpgrowth and get recommendations based on the rules:
+
+```bash
+curl http://127.0.0.1:5000/fpgrowth-recommendation?min_support=0.01&min_threshold=0.5
 ```
 
 ## Notes
