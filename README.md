@@ -18,23 +18,13 @@ You can install the required packages using the following command:
 pip install -r requirements.txt
 ```
 
-## Run Locally
 
-```bash
-python3.7 -m venv .env
-
-source .env/bin/activate
-
-pip3 install -r requirements.txt
-
-python3 app.py 
-```
 
 ## Dataset
 
 The app uses the "OnlineRetail.csv" dataset for collaborative filtering and association rule mining. The dataset contains online retail transaction data. The app loads and preprocesses the data to create customer-item and item-item matrices for collaborative filtering.
 
-## How to Use : Docker
+## How to Use : Docker [Suggested]
 
 1. Clone this repository to your local machine.
 
@@ -55,6 +45,19 @@ docker run -p 5000:5000 collaborative-app
 ```
 
 5. The Flask app will now be running inside the Docker container. You can access it at [http://localhost:5000](http://localhost:5000) on your local machine.
+
+
+## How to Run Locally
+
+```bash
+python3.7 -m venv .env
+
+source .env/bin/activate
+
+pip3 install -r requirements.txt
+
+python3 app.py 
+```
 
 ## Endpoints
 
