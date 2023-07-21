@@ -1,59 +1,80 @@
 # RecsysAssociationPy
-
 # Collaborative Filtering and Association Rule Mining App
 
-This Python app combines Collaborative Filtering recommendation and Association Rule Mining to provide personalized item recommendations and discover interesting item associations in a transactional dataset. The app is built using Flask, a micro web framework, to create a RESTful API that exposes various endpoints for recommendation and association rule mining.
+This is a Python application that implements collaborative filtering for item recommendation and association rule mining based on the Apriori and FPGrowth algorithms. The app is built using Flask, a lightweight web framework for Python.
 
-## Installation and Setup
+## Requirements
 
-1. Clone this repository to your local machine:
+To run this app, you need to have the following installed:
 
-```bash
-git clone https://github.com/imSrbh/RecsysAssociationPy.git
-```
+- Python 3.7 or higher
+- Flask
+- pandas
+- mlxtend
 
-2. Install the required Python packages using pip:
-
-```bash
-pip install flask pandas mlxtend
-```
-
-3. Download the "OnlineRetail.csv" dataset and place it in the same directory as the "app.py" file.
-
-## Usage
-
-Start the Flask server by running the following command:
+You can install the required packages using the following command:
 
 ```bash
-python app.py
+pip install -r requirements.txt
 ```
 
-The server will start running locally on your machine at `http://127.0.0.1:5000/`.
+## Dataset
 
-### Endpoints
+The app uses the "OnlineRetail.csv" dataset for collaborative filtering and association rule mining. The dataset contains online retail transaction data. The app loads and preprocesses the data to create customer-item and item-item matrices for collaborative filtering.
+
+## How to Use
+
+1. Clone this repository to your local machine.
+
+2. Navigate to the project directory containing the Dockerfile.
+
+3. Build the Docker image by running the following command:
+
+```bash
+docker build -t collaborative-app .
+```
+
+Replace `collaborative-app` with the desired name for your Docker image.
+
+4. Once the image is built, run the Docker container using the following command:
+
+```bash
+docker run -p 5000:5000 collaborative-app
+```
+
+5. The Flask app will now be running inside the Docker container. You can access it at [http://localhost:5000](http://localhost:5000) on your local machine.
+
+## Endpoints
 
 The app provides the following endpoints:
 
-1. `/item-recommendation`: Get item-based recommendations for a given item.
+- `/item-recommendation`: Recommends similar items based on an input item ID.
+- `/user-recommendation`: Recommends items to one user based on the items purchased by another user.
+- `/apriori-recommendation`: Mines association rules using the Apriori algorithm and provides recommendations based on the rules.
 
-   Example usage: `http://127.0.0.1:5000/item-recommendation?item_id=23167`
+## Example Usage
 
-2. `/user-recommendation`: Get user-to-user recommendation for two given users.
+1. To get item recommendations based on item ID 23167:
 
-   Example usage: `http://127.0.0.1:5000/user-recommendation?user_idA=12583&user_idB=13047`
+```bash
+curl http://localhost:5000/item-recommendation?item_id=23167
+```
 
-3. `/apriori-recommendation`: Discover association rules using Apriori algorithm.
+2. To get user-based item recommendations for users with IDs 12583 and 13047:
 
-   Example usage: `http://127.0.0.1:5000/apriori-recommendation?min_support=0.01&min_threshold=0.5`
+```bash
+curl http://localhost:5000/user-recommendation?user_idA=12583&user_idB=13047
+```
 
-4. `/fpgrowth-recommendation`: Discover association rules using FP-Growth algorithm.
+3. To mine association rules and get recommendations based on the rules:
 
-   Example usage: `http://127.0.0.1:5000/fpgrowth-recommendation?min_support=0.01&min_threshold=0.5`
+```bash
+curl http://localhost:5000/apriori-recommendation?min_support=0.01&min_threshold=0.5
+```
 
-## Note
+## Notes
 
-- The app preprocesses the "OnlineRetail.csv" dataset to create necessary matrices for collaborative filtering and association rule mining.
-- The collaborative filtering part uses item-item similarity, while the association rule mining part uses Apriori and FP-Growth algorithms.
-- The app provides flexible options to customize the minimum support and confidence thresholds for association rule mining.
-- The responses are returned in JSON format for easy integration with other applications.
+- The app uses cosine similarity for collaborative filtering.
+- The Apriori and FPGrowth algorithms are used for association rule mining.
+- The dataset should be placed in the project directory and named "OnlineRetail.csv".
 
