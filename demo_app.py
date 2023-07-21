@@ -8,13 +8,6 @@ from sklearn.metrics.pairwise import cosine_similarity
 df = pd.read_csv("OnlineRetail.csv", encoding='unicode_escape')
 df1 = df.dropna(subset=['CustomerID'])
 
-# customer_item_matrix = df1.pivot_table(index='CustomerID', columns='StockCode', values='Quantity', aggfunc='sum')
-# customer_item_matrix = customer_item_matrix.applymap(lambda x: 1 if x > 0 else 0)
-
-# user_to_user_sim_matrix = pd.DataFrame(cosine_similarity(customer_item_matrix))
-# user_to_user_sim_matrix.columns = customer_item_matrix.index
-# user_to_user_sim_matrix['CustomerID'] = customer_item_matrix.index
-# user_to_user_sim_matrix = user_to_user_sim_matrix.set_index('CustomerID')
 
 def ub_recommend_items(user_idA, user_idB, top_n=5):
     user_idA = float(user_idA)
