@@ -18,11 +18,23 @@ You can install the required packages using the following command:
 pip install -r requirements.txt
 ```
 
+## Run Locally
+
+```bash
+python3.7 -m venv .env
+
+source .env/bin/activate
+
+pip3 install -r requirements.txt
+
+python3 app.py 
+```
+
 ## Dataset
 
 The app uses the "OnlineRetail.csv" dataset for collaborative filtering and association rule mining. The dataset contains online retail transaction data. The app loads and preprocesses the data to create customer-item and item-item matrices for collaborative filtering.
 
-## How to Use
+## How to Use : Docker
 
 1. Clone this repository to your local machine.
 
@@ -52,6 +64,8 @@ The app provides the following endpoints:
 - `/user-recommendation`: Recommends items to one user based on the items purchased by another user.
 - `/apriori-recommendation`: Mines association rules using the Apriori algorithm and provides recommendations based on the rules.
 - `/fpgrowth-recommendation`: Mines association rules using the FPGrowth algorithm and provides recommendations based on the rules.
+
+
 
 ## Example Usage
 
